@@ -965,12 +965,9 @@ VLCLibrary >> unix32LibraryName [
 
 { #category : #'accessing platform' }
 VLCLibrary >> unix64LibraryName [
-	#('/usr/lib/i386-linux-gnu' '/usr/lib32' '/usr/lib' '/snap/vlc/current/usr/lib') , ((OSEnvironment current at: 'LD_LIBRARY_PATH' ifAbsent: [ '' ]) substrings: ':')
-		do: [ :path | 
-			| libraryPath |
-			libraryPath := path asFileReference / 'libvlc.so'.
-			libraryPath exists ifTrue: [ ^ libraryPath fullName ] ].
-	self error: 'Cannot locate vlc library. Please check if it installed on your system'
+
+	^ FFIUnix64LibraryFinder findAnyLibrary:
+		  #( 'libvlc.so' 'libvlc.so.5' )
 ]
 
 { #category : #'media player' }

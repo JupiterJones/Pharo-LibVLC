@@ -65,12 +65,9 @@ VLCLibraryCore >> unix32LibraryName [
 
 { #category : #'accessing platform' }
 VLCLibraryCore >> unix64LibraryName [
-	#('/usr/lib/i386-linux-gnu' '/usr/lib32' '/usr/lib' '/snap/vlc/current/usr/lib') , ((OSEnvironment current at: 'LD_LIBRARY_PATH' ifAbsent: [ '' ]) substrings: ':')
-		do: [ :path | 
-			| libraryPath |
-			libraryPath := path asFileReference / 'libvlccore.so'.
-			libraryPath exists ifTrue: [ ^ libraryPath fullName ] ].
-	self error: 'Cannot locate vlccore library. Please check if it installed on your system'
+
+	^ FFIUnix64LibraryFinder findAnyLibrary:
+		  #( 'libvlccore.so' 'libvlccore.so.9' )
 ]
 
 { #category : #'accessing platform' }
