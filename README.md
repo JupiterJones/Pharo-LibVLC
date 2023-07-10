@@ -18,7 +18,7 @@ Binding FFI of [libvlc](https://www.videolan.org/developers/vlc/doc/doxygen/html
 ```st
 Metacello new
   baseline: 'VLC';
-  repository: 'github://badetitou/Pharo-LibVLC';
+  repository: 'github://JupiterJones/Pharo-LibVLC';
   load.
 ```
 
